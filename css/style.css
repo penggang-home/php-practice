@@ -6,6 +6,11 @@
 .header-menu a{
     text-decoration: none;
 }
+.header-menu a:hover{
+    color: #1abc9c;
+    font-weight: bold;
+    text-decoration: none;
+}
 .header-menu ul li{
     list-style: none;
     display: inline-block;
@@ -48,4 +53,19 @@ header nav .right ul li{
     width: 15%;
     text-align: center;
     color: white;
+}
+header nav .right ul li a{
+    color: white;
+    text-decoration: none;
+}
+header nav .right ul li a:hover{
+    color: #1abc9c;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+header div  img{
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
 }
