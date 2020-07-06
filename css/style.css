@@ -20,11 +20,6 @@
     text-decoration: none;
 }
 
-.header-menu ul {
-    display: flex;
-    justify-content: space-between;
-}
-
 header nav {
     display: flex;
     background-color: #689FEE;
@@ -34,12 +29,23 @@ header nav {
 header nav .left {
     flex: 1 1 30%;
     display: flex;
-    flex-wrap: nowrap;
+}
+
+header nav div.right {
+    display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
-    font-size: 1.5em;
-    padding: 20px 0;
+}
+header nav div.right ul {
+    flex: 1 1 auto;
+}
+header nav div.left img {
+    width: 100%;
+    height: auto;
+}
+
+.input-group {
+    flex-wrap: nowrap;
 }
 
 header nav .right {
@@ -92,7 +98,7 @@ main aside {
 
 main aside div ul {
     margin: 10px 0px 5px 10px;
-    padding:5px 10px 5px 15px;
+    padding: 5px 10px 5px 15px;
     background-color: #EEE;
     list-style: none;
     box-shadow: 5px 5px #BEBEBE;
@@ -120,24 +126,99 @@ main aside div ul .icon-dian {
 }
 
 main .main-right {
-    background-color: teal;
     margin-left: 15px;
     flex: 1 1 80%;
 }
 
-main div .search{
+main div .search {
     margin: 10px 0px 5px 10px;
-    padding:5px 10px 5px 15px;
-    background-color: #eee;
-    box-shadow: 5px 5px #BEBEBE;
+    padding: 5px 10px 5px 15px;
+    /* background-color: #eee;
+    box-shadow: 5px 5px #BEBEBE; */
 }
 
-option{
+main aside div .search form div .input-group input {
+    flex: 1 1 auto;
+}
+
+main aside div .search form:nth-of-type(2) div .input-group select {
+    flex: 1 1 auto;
+}
+
+main aside .about ul li:first-child {
+    border-bottom: 3px solid royalblue;
+}
+
+main .main-right {
+    display: flex;
+    flex-direction: column;
+}
+
+main .main-right article:nth-of-type(1) {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+main .main-right article:nth-of-type(2) {
+    flex: 1 1 50%;
+}
+
+main article p .icon-rect {
+    color: #005497;
+}
+
+.main-right article>div {
+    flex: 1 1 auto;
+}
+
+.pay {
+    display: flex;
+    flex-direction: column;
+}
+
+.pay div {
     text-align: center;
+    flex: 1 1 50%;
 }
-main aside div .search form div .input-group input{
-    flex: 1 1 auto;
+
+.pay div img {
+    max-width: 100%;
+    min-width: 100%;
+    height: auto;
 }
-main aside div .search form:nth-of-type(2) div .input-group select{
-    flex: 1 1 auto;
+
+.free-content div div span:nth-of-type(1) {
+    color: #D41D14;
+    font-weight: bold;
+}
+
+.free-content div div span:nth-of-type(2) {
+    color: #FE791F;
+    font-weight: 500;
+}
+
+.free-content div div span:nth-of-type(3) {
+    color: #CE37AE;
+    font-weight: 500;
+}
+
+.free-content div div:nth-of-type(2) {
+    text-indent: 2em;
+    color: royalblue;
+}
+
+.free-content div p {
+    color: #FE791F;
+}
+
+footer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: white;
+    font-weight: bold;
+    background-color: #5C93E3;
 }
