@@ -14,6 +14,11 @@
     text-decoration: none;
 }
 
+.header-menu ul {
+    display: flex;
+    justify-content: space-between;
+}
+
 .header-menu ul li {
     list-style: none;
     display: inline-block;
@@ -22,7 +27,7 @@
 
 header nav {
     display: flex;
-    background-color: #689FEE;
+    background-image: url("../image/menu.png");
 
 }
 
@@ -36,9 +41,11 @@ header nav div.right {
     justify-content: center;
     align-items: center;
 }
+
 header nav div.right ul {
     flex: 1 1 auto;
 }
+
 header nav div.left img {
     width: 100%;
     height: auto;
