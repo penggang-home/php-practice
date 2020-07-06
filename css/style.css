@@ -1,32 +1,38 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-.header-menu a{
+
+.header-menu a {
     text-decoration: none;
 }
-.header-menu a:hover{
+
+.header-menu a:hover {
     color: #1abc9c;
     font-weight: bold;
     text-decoration: none;
 }
-.header-menu ul li{
+
+.header-menu ul li {
     list-style: none;
     display: inline-block;
     text-decoration: none;
 }
-.header-menu ul{
+
+.header-menu ul {
     display: flex;
     justify-content: space-between;
 }
-header nav{
+
+header nav {
     display: flex;
     background-color: #689FEE;
-    
+
 }
-header nav .left{
-    flex:  1 1 30%;
+
+header nav .left {
+    flex: 1 1 30%;
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
@@ -35,37 +41,71 @@ header nav .left{
     font-size: 1.5em;
     padding: 20px 0;
 }
-header nav .right{
-    flex:  1 1 70%;
+
+header nav .right {
+    flex: 1 1 70%;
 }
-header nav .right ul{
+
+header nav .right ul {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     padding: 20px 0;
 }
-header nav .right ul li{
+
+header nav .right ul li {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     flex-wrap: wrap;
     width: 15%;
     text-align: center;
     color: white;
 }
-header nav .right ul li a{
+
+header nav .right ul li a {
     color: white;
     text-decoration: none;
 }
-header nav .right ul li a:hover{
+
+header nav .right ul li a:hover {
     color: #1abc9c;
     font-weight: bold;
     text-decoration: none;
 }
 
-header div  img{
+header div img {
     width: 100%;
     height: 130px;
-    object-fit: cover;
+    /* object-fit: cover; */
+}
+
+/* 主体部分开始 */
+main {
+    display: flex;
+}
+
+main aside {
+    flex: 1 1 25%;
+}
+
+main aside div ul {
+    margin-left: 30px;
+    background-color: #F9F9F9;
+    list-style: none;
+}
+
+main aside div ul .icon-dian{
+    font-size: 12px;
+    margin-right: -5px;
+}
+
+main aside .icon-rect{
+    color: #005497;
+}
+main .main-right {
+    background-color: teal;
+    margin-left: 15px;
+    flex: 1 1 75%;
 }
