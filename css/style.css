@@ -87,25 +87,57 @@ main {
 }
 
 main aside {
-    flex: 1 1 25%;
+    flex: 1 1 20%;
 }
 
 main aside div ul {
-    margin-left: 30px;
-    background-color: #F9F9F9;
+    margin: 10px 0px 5px 10px;
+    padding:5px 10px 5px 15px;
+    background-color: #EEE;
     list-style: none;
+    box-shadow: 5px 5px #BEBEBE;
 }
 
-main aside div ul .icon-dian{
+main aside div ul li a {
+    text-decoration: none;
+    white-space: nowrap;
+    color: #5096C1;
+}
+
+main aside div ul li a:hover {
+    color: teal;
+    font-weight: bold;
+}
+
+main aside .icon-rect {
+    color: #005497;
+    margin-right: -5px;
+}
+
+main aside div ul .icon-dian {
     font-size: 12px;
     margin-right: -5px;
 }
 
-main aside .icon-rect{
-    color: #005497;
-}
 main .main-right {
     background-color: teal;
     margin-left: 15px;
-    flex: 1 1 75%;
+    flex: 1 1 80%;
+}
+
+main div .search{
+    margin: 10px 0px 5px 10px;
+    padding:5px 10px 5px 15px;
+    background-color: #eee;
+    box-shadow: 5px 5px #BEBEBE;
+}
+
+option{
+    text-align: center;
+}
+main aside div .search form div .input-group input{
+    flex: 1 1 auto;
+}
+main aside div .search form:nth-of-type(2) div .input-group select{
+    flex: 1 1 auto;
 }
