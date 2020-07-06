@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header-menu a{
+    text-decoration: none;
+}
+.header-menu ul li{
+    list-style: none;
+    display: inline-block;
+    text-decoration: none;
+}
+.header-menu ul{
+    display: flex;
+    justify-content: space-between;
+}
+header nav{
+    display: flex;
+    
+}
