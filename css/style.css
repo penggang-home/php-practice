@@ -3,7 +3,12 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+body{
+    margin: 0 120px;
+}
+.idnex-body{
+    margin: 0 50px;
+}
 .header-menu a {
     text-decoration: none;
 }

@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>易查供求信息网</title>
 
-    <link rel="stylesheet" href="css/bootstrap.css">
-
-    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1925165_m54txa8lr6.css">
-    <link rel="stylesheet" href="css/style.css">
-
-    <script src="js/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery-3.4.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https:////at.alicdn.com/t/font_1925165_m54txa8lr6.css">
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="index-body">
     <header>
         <div class="header-menu">
             <ul class="mb-1">
@@ -60,16 +60,40 @@
             <div>
                 <p class="mani-title mb-0"><i class="iconfont icon-rect"></i> 推荐企业广告信息</p>
                 <ul>
-                    <li><a href="#"> <i class="iconfont icon-dian"></i> 名扬彩务印刷欢迎您</a> </li>
-                    <li><a href="#"> <i class="iconfont icon-dian"></i> 万法影城优惠</a> </li>
-                    <li><a href="#"> <i class="iconfont icon-dian"></i> 欧亚卖场店即将开始</a> </li>
-                    <li><a href="#"> <i class="iconfont icon-dian"></i> 新城喜悦广场印象KTV</a> </li>
-                    <li><a href="#"> <i class="iconfont icon-dian"></i> 新城喜悦广场盛大开业</a> </li>
-                    <li><a href="#"> <i class="iconfont icon-dian"></i> 美食广场欢迎您</a> </li>
-                    <li><a href="#"> <i class="iconfont icon-dian"></i> 心悦房地产</a> </li>
-                    <li><a href="#"> <i class="iconfont icon-dian"></i> 花园式酒店正式成立</a> </li>
-                    <li><a href="#"> <i class="iconfont icon-dian"></i> 诚邀电子商务</a> </li>
-                    <li><a href="#"> <i class="iconfont icon-dian"></i> 你好，欢迎登录52同城</a> </li>
+
+                <?php
+                        $dbms = 'mysql';
+                        $host = 'localhost';
+                        $dbName='tb_cityinfo';
+                        $user='root';
+                        $pass='123456';
+
+                        $dsn="$dbms:dbname=$dbName;host=$host";
+
+                        try{
+                            $pdo = new PDO($dsn,$user,$pass);
+                            $sql = 'select * from tb_advertsing';
+                            $result = $pdo->prepare($sql);
+                            $result->execute();
+
+                            while($res = $result->fetch(PDO::FETCH_ASSOC)){
+                                ?>
+                                <li><a href="#"> <i class="iconfont icon-dian"></i> <?php echo $res['title'] ?></a> </li>
+                                <!-- <li><a href="#"> <i class="iconfont icon-dian"></i> 万法影城优惠</a> </li>
+                                <li><a href="#"> <i class="iconfont icon-dian"></i> 欧亚卖场店即将开始</a> </li>
+                                <li><a href="#"> <i class="iconfont icon-dian"></i> 新城喜悦广场印象KTV</a> </li>
+                                <li><a href="#"> <i class="iconfont icon-dian"></i> 新城喜悦广场盛大开业</a> </li>
+                                <li><a href="#"> <i class="iconfont icon-dian"></i> 美食广场欢迎您</a> </li>
+                                <li><a href="#"> <i class="iconfont icon-dian"></i> 心悦房地产</a> </li>
+                                <li><a href="#"> <i class="iconfont icon-dian"></i> 花园式酒店正式成立</a> </li>
+                                <li><a href="#"> <i class="iconfont icon-dian"></i> 诚邀电子商务</a> </li>
+                                <li><a href="#"> <i class="iconfont icon-dian"></i> 你好，欢迎登录52同城</a> </li> -->
+                                <?php
+                            }
+                        } catch (Exception $e){
+                            die("Error:".$e->getMessage()."<br>");
+                        }
+                    ?>
                 </ul>
             </div>
             <br>
