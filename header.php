@@ -33,7 +33,7 @@
         </div>
         <nav>
             <div class="left">
-                <img src="image/logo.png"  alt="">
+                <a href="index.php"><img src="image/logo.png"  alt=""></a>
             </div>
             <div class="right">
                 <ul class="m-0 p-0">
