@@ -5,9 +5,10 @@
 }
 body{
     margin: 0 120px;
+    background-color: #E8E8E8;
 }
-.idnex-body{
-    margin: 0 50px;
+header,main,footer{
+    background-color: white;
 }
 .header-menu a {
     text-decoration: none;
@@ -95,8 +96,8 @@ header nav .right ul li a:hover {
 
 header div img {
     width: 100%;
-    height: 130px;
-    /* object-fit: cover; */
+    max-height: 100px;
+    min-height: 50px;
 }
 
 /* 主体部分开始 */
@@ -184,6 +185,9 @@ main article p .icon-rect {
     flex: 1 1 auto;
 }
 
+.free-content >div{
+    border-bottom: 2px dotted #ccc;
+}
 .pay {
     display: flex;
     flex-direction: column;
@@ -223,9 +227,10 @@ main article p .icon-rect {
 .free-content div p {
     color: #FE791F;
 }
-
+main{
+    padding-bottom: 30px;
+}
 footer {
-    margin-top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
