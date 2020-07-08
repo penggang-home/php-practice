@@ -113,8 +113,10 @@ header div img {
 main {
     display: flex;
 }
-body > main > div{
-    /* height: fit-content; */
+.page{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 main aside {
     flex: 1 1 20%;
@@ -138,7 +140,9 @@ main aside div ul li a:hover {
     color: teal;
     font-weight: bold;
 }
-
+body > div > main > div{
+    height: fit-content;
+}
 main aside .icon-rect {
     color: #005497;
     margin-right: -5px;
@@ -151,7 +155,7 @@ main aside div ul .icon-dian {
 
 main .main-right {
     margin-left: 15px;
-    flex: 1 1 80%;
+    flex: 1 1 auto;
 }
 
 main div .search {
@@ -179,15 +183,15 @@ main .main-right {
 }
 
 main .main-right article:nth-of-type(1) {
-    flex: 1 1 50%;
+    flex: 1 1 auto;
     min-height: 50%;
     display: flex;
     flex-direction: column;
 }
 
 main .main-right article:nth-of-type(2) {
-    flex: 1 1 50%;
-    min-height: 50%;
+    flex: 1 1 auto;
+    min-height: auto;
 }
 
 main article p .icon-rect {
@@ -239,9 +243,6 @@ main article p .icon-rect {
 .content-info {
     color: #FE791F;
 }
-main{
-    padding-bottom: 30px;
-}
 footer {
     display: flex;
     justify-content: center;
@@ -285,4 +286,15 @@ footer {
     color: red;
     font-weight: bold;
 }
+.disabled:hover{
+    cursor: url("../image/16.ico"),auto;
+}
 /* 发布信息页结束 */
+
+
+.page-link{
+    user-select: none;
+}
+.paid-content>div{
+    border-bottom: 2px dotted #ccc;
+}

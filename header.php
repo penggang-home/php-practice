@@ -17,7 +17,7 @@
 
 <body>
 
-    <div class="container">
+    <div class="container pb-0">
         
 
     <!-- 头部开始 -->
@@ -41,9 +41,9 @@
             <div class="right">
                 <ul class="m-0 p-0">
                     <li><a href="index.php">首页</a></li>
-                    <li><a href="">招聘信息</a></li>
-                    <li><a href="">培训信息</a></li>
-                    <li><a href="">房屋信息</a></li>
+                    <li><a href="zhaopin.php">招聘信息</a></li>
+                    <li><a href="peixun.php">培训信息</a></li>
+                    <li><a href="index.php">房屋信息</a></li>
                     <li><a href="">求购信息</a></li>
                     <li><a href="">求职信息</a></li>
                     <li><a href="">家庭信息</a></li>

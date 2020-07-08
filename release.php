@@ -64,7 +64,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">联系电话</span>
                                 </div>
-                                <input type="text" required name='releaseTel'>
+                                <input type="tel" required name='releaseTel'>
                             </div>
                         </div>
 

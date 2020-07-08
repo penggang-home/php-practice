@@ -6,8 +6,9 @@
         $linkman = $_POST['releasePerson'];
         $tel = $_POST['releaseTel'];
         // 年份减一
-        $sdate =  date('Y-m-d h:i:s',strtotime("-1 year")); 
-        $showdate = date('Y-m-d',time());
+        // $sdate =  date('Y-m-d h:i:s',strtotime("-1 year")); 
+        $sdate =  date('Y-m-d h:i:s',time()); 
+        $showdate = date('Y-m-d',strtotime("+1 month"));
 
         $dbms = 'mysql';
         $host = 'localhost';
