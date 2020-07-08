@@ -18,7 +18,7 @@
         $dsn = "$dbms:dbname=$dbName;host=$host";
 
         $pdo = new PDO($dsn,$user,$pass);
-        $query ="insert into tb_leaguerinfo(type,title,content,linkman,tel,sdate,showdate)values('$type','$title','$content','$linkman','$tel','$sdate','$showdate')";
+        $query ="insert into tb_freeinfo(type,title,content,linkman,tel,sdate,showdate)values('$type','$title','$content','$linkman','$tel','$sdate','$showdate')";
         $result=$pdo->prepare($query);
         $result->execute();
 

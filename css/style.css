@@ -4,9 +4,16 @@
     box-sizing: border-box;
 }
 body{
-    margin: 0 120px;
     background-color: #E8E8E8;
 }
+.container{
+    background-color: #E8E8E8;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: white;
+}
+    
 header,main,footer{
     background-color: white;
 }
@@ -106,7 +113,9 @@ header div img {
 main {
     display: flex;
 }
-
+body > main > div{
+    /* height: fit-content; */
+}
 main aside {
     flex: 1 1 20%;
 }
@@ -171,12 +180,14 @@ main .main-right {
 
 main .main-right article:nth-of-type(1) {
     flex: 1 1 50%;
+    min-height: 50%;
     display: flex;
     flex-direction: column;
 }
 
 main .main-right article:nth-of-type(2) {
     flex: 1 1 50%;
+    min-height: 50%;
 }
 
 main article p .icon-rect {
@@ -195,8 +206,7 @@ main article p .icon-rect {
     flex-direction: column;
 }
 
-.pay div {
-    text-align: center;
+.pay > div {
     flex: 1 1 50%;
 }
 
@@ -206,27 +216,27 @@ main article p .icon-rect {
     height: auto;
 }
 
-.free-content div div span:nth-of-type(1) {
+.content-type {
     color: #D41D14;
     font-weight: bold;
 }
 
-.free-content div div span:nth-of-type(2) {
+.content-title{
     color: #FE791F;
     font-weight: 500;
 }
 
-.free-content div div span:nth-of-type(3) {
+.content-sdate {
     color: #CE37AE;
     font-weight: 500;
 }
 
-.free-content div div:nth-of-type(2) {
+.content-content{
     text-indent: 2em;
     color: royalblue;
 }
 
-.free-content div p {
+.content-info {
     color: #FE791F;
 }
 main{

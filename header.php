@@ -17,6 +17,9 @@
 
 <body>
 
+    <div class="container">
+        
+
     <!-- 头部开始 -->
     <header>
         <div class="header-menu">
@@ -80,12 +83,13 @@
                             $result->execute();
 
                             while($res = $result->fetch(PDO::FETCH_ASSOC)){
-                                ?>
-                                <li>
-                                    <a href="#"> <i class="iconfont icon-dian"></i> <?php echo $res['title'] ?></a>
-                                </li>
-
-                                <?php
+                                if($res['flag'] == 1){
+                                    ?>
+                                        <li>
+                                            <a href="#"> <i class="iconfont icon-dian"></i> <?php echo $res['title'] ?></a>
+                                        </li>
+                                    <?php   
+                                }
                             }
                         } catch (Exception $e){
                             die("Error:".$e->getMessage()."<br>");
