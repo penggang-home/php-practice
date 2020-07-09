@@ -69,7 +69,7 @@
                         for($i=1;$i<=$paidTotalPage;$i++){
                             ?>  
                                 <li class="page-item <?php if($i == $paidCurrentPage){echo 'active';}?>">
-                                    <a class="page-link" href="index.php?paidpage=<?php echo $i ?>"> 
+                                    <a class="page-link" href="index.php?paidpage=<?php echo $i ?>&<?php echo 'freepage='.$currentPageNum?>"> 
                                         <?php echo $i ?>
                                     </a>
                                 </li>

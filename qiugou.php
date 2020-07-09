@@ -12,7 +12,7 @@
                         try{
                             $pdo = new PDO($dsn,$user,$pass);
 
-                            $paidTotalNumSql = "select * from tb_info where type='培训信息' and checkstate = 1 ";
+                            $paidTotalNumSql = "select * from tb_info where type='求购信息' and checkstate = 1 ";
                             $paidTotalNum = $pdo->prepare($paidTotalNumSql);
                             $paidTotalNum->execute();
                                                     
@@ -32,12 +32,12 @@
                             $paidStartNum = ($paidCurrentPage -1)*$paidPageSize;
 
                             // 获取当前页的内容
-                            $paidSql = "select * from tb_info where type='培训信息' and checkstate = 1 order by id limit $paidStartNum,$paidPageSize ";
+                            $paidSql = "select * from tb_info where type='求购信息' and checkstate = 1 order by id limit $paidStartNum,$paidPageSize ";
                             $paidResult = $pdo->prepare($paidSql);
                             $paidResult->execute();
 
                             while($res = $paidResult->fetch(PDO::FETCH_ASSOC)){
-                                if($res['checkstate'] == 1 and $res['type'] == "培训信息"){
+                                if($res['checkstate'] == 1 and $res['type'] == "求购信息"){
                                     ?>
                                     <div class='mb-2'>
                                         <div>
@@ -59,16 +59,16 @@
                 <nav class='page' aria-label="...">
                     <ul class="pagination">
                         <li class="page-item <?php if($paidCurrentPage == 1){echo 'disabled';}?>">
-                            <a class="page-link" href="peixun.php?paidpage=1&<?php echo 'freepage='.$currentPageNum?>">首页</a>
+                            <a class="page-link" href="qiugou.php?paidpage=1&<?php echo 'freepage='.$currentPageNum?>">首页</a>
                         </li>
                         <li class="page-item <?php if($paidCurrentPage == 1){echo 'disabled';}?>">
-                            <a class="page-link" href="peixun.php?paidpage=<?php echo $paidCurrentPage-1 ?>&<?php echo 'freepage='.$currentPageNum?>">上一页</a>
+                            <a class="page-link" href="qiugou.php?paidpage=<?php echo $paidCurrentPage-1 ?>&<?php echo 'freepage='.$currentPageNum?>">上一页</a>
                         </li>
                         <?php
                             for($i=1;$i<=$paidTotalPage;$i++){
                                 ?>  
                                     <li class="page-item <?php if($i == $paidCurrentPage){echo 'active';}?>">
-                                        <a class="page-link" href="peixun.php?paidpage=<?php echo $i ?>&<?php echo 'freepage='.$currentPageNum?>"> 
+                                        <a class="page-link" href="qiugou.php?paidpage=<?php echo $i ?>&<?php echo 'freepage='.$currentPageNum?>"> 
                                             <?php echo $i ?>
                                         </a>
                                     </li>
@@ -77,10 +77,10 @@
                             }
                         ?>
                         <li class="page-item <?php if($paidCurrentPage == $paidTotalPage){echo 'disabled';}?>">
-                            <a class="page-link" href="peixun.php?paidpage=<?php echo $paidCurrentPage+1 ?>&<?php echo 'freepage='.$currentPageNum?>">下一页</a>
+                            <a class="page-link" href="qiugou.php?paidpage=<?php echo $paidCurrentPage+1 ?>&<?php echo 'freepage='.$currentPageNum?>">下一页</a>
                         </li>
                         <li class="page-item <?php if($paidCurrentPage == $paidTotalPage){echo 'disabled';}?>">
-                            <a class="page-link" href="peixun.php?paidpage=<?php echo $paidTotalPage ?>&<?php echo 'freepage='.$currentPageNum?>">尾页</a>
+                            <a class="page-link" href="qiugou.php?paidpage=<?php echo $paidTotalPage ?>&<?php echo 'freepage='.$currentPageNum?>">尾页</a>
                         </li>
                     </ul>
                 </nav>
@@ -100,7 +100,7 @@
                     try{
                         $pdo = new PDO($dsn,$user,$pass);
 
-                        $pageSql = "select * from tb_freeinfo where type='培训信息' and checkstate = 1 and sdate<showdate ";
+                        $pageSql = "select * from tb_freeinfo where type='求购信息' and checkstate = 1 and sdate<showdate ";
                         $page = $pdo->prepare($pageSql);
                         $page->execute();
         
@@ -119,14 +119,14 @@
                         $paidCurrentPage =  isset($_GET['paidpage'])?$_GET['paidpage']:1;
 
                         // 获取当前页的内容
-                        $sql = "select * from tb_freeinfo where type='培训信息' and checkstate = 1 and sdate<showdate order by id limit $startPageNum,$pageSize ";
+                        $sql = "select * from tb_freeinfo where type='求购信息' and checkstate = 1 and sdate<showdate order by id limit $startPageNum,$pageSize ";
 
                         $result = $pdo->prepare($sql);
                         $result->execute();
 
                         while($res = $result->fetch(PDO::FETCH_ASSOC)){
                             $currentDate = date("Y-m-d",time());
-                            if($res['checkstate'] == 1 and $currentDate < $res['showdate'] and $res['type'] == "培训信息"){
+                            if($res['checkstate'] == 1 and $currentDate < $res['showdate'] and $res['type'] == "求购信息"){
                                 ?>
                                     <div class='mb-2'>
                                         <div>
@@ -151,16 +151,16 @@
             <nav class='page' aria-label="...">
                 <ul class="pagination">
                     <li class="page-item <?php if($currentPageNum == 1){echo 'disabled';}?>">
-                        <a class="page-link" href="peixun.php?freepage=1&<?php echo 'paidpage='.$paidCurrentPage?>">首页</a>
+                        <a class="page-link" href="qiugou.php?freepage=1&<?php echo 'paidpage='.$paidCurrentPage?>">首页</a>
                     </li>
                     <li class="page-item <?php if($currentPageNum == 1){echo 'disabled';}?>">
-                        <a class="page-link" href="peixun.php?freepage=<?php echo $currentPageNum-1 ?>&<?php echo 'paidpage='.$paidCurrentPage?>">上一页</a>
+                        <a class="page-link" href="qiugou.php?freepage=<?php echo $currentPageNum-1 ?>&<?php echo 'paidpage='.$paidCurrentPage?>">上一页</a>
                     </li>
                     <?php
                         for($i=1;$i<=$pageCountNum;$i++){
                             ?>  
                                 <li class="page-item <?php if($i == $currentPageNum){echo 'active';}?>">
-                                    <a class="page-link" href="peixun.php?freepage=<?php echo $i ?>&<?php echo 'paidpage='.$paidCurrentPage?>"> 
+                                    <a class="page-link" href="qiugou.php?freepage=<?php echo $i ?>&<?php echo 'paidpage='.$paidCurrentPage?>"> 
                                         <?php echo $i?>
                                     </a>
                                 </li>
@@ -168,10 +168,10 @@
                         }
                     ?>
                     <li class="page-item <?php if($currentPageNum == $pageCountNum){echo 'disabled';}?>">
-                        <a class="page-link" href="peixun.php?freepage=<?php echo $currentPageNum+1 ?>&<?php echo 'paidpage='.$paidCurrentPage?>">下一页</a>
+                        <a class="page-link" href="qiugou.php?freepage=<?php echo $currentPageNum+1 ?>&<?php echo 'paidpage='.$paidCurrentPage?>">下一页</a>
                     </li>
                     <li class="page-item <?php if($currentPageNum == $pageCountNum){echo 'disabled';}?>">
-                        <a class="page-link" href="peixun.php?freepage=<?php echo $pageCountNum ?>&<?php echo 'paidpage='.$paidCurrentPage?>">尾页</a>
+                        <a class="page-link" href="qiugou.php?freepage=<?php echo $pageCountNum ?>&<?php echo 'paidpage='.$paidCurrentPage?>">尾页</a>
                     </li>
                 </ul>
             </nav>

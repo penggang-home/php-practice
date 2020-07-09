@@ -44,9 +44,9 @@
                     <li><a href="zhaopin.php">招聘信息</a></li>
                     <li><a href="peixun.php">培训信息</a></li>
                     <li><a href="index.php">房屋信息</a></li>
-                    <li><a href="">求购信息</a></li>
-                    <li><a href="">求职信息</a></li>
-                    <li><a href="">家庭信息</a></li>
+                    <li><a href="qiugou.php">求购信息</a></li>
+                    <li><a href="qiuzhi.php">求职信息</a></li>
+                    <li><a href="jiating.php">家庭信息</a></li>
                     <li><a href="">车辆信息</a></li>
                     <li><a href="">出售信息</a></li>
                     <li><a href="">招商信息</a></li>
@@ -101,41 +101,40 @@
             <div>
                 <p class="mani-title"><i class="iconfont icon-rect"></i> 信息快速检索</p>
                 <div class="search">
-                    <form class="form-row">
+                    <form action='search.php' method='POST' class="form-row">
                         <div class="form-group mb-1 w-100">
                             <div class="input-group ">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">搜索内容</span>
                                 </div>
-                                <input type="text">
+                                <input type="text" name='searchContent' required>
                             </div>
                         </div>
-                    </form>
-                    <form class="form-row">
                         <div class="form-group mb-1 w-100">
                             <div class="input-group ">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">选择条件</span>
                                 </div>
-                                <select name="search-info" id="search-info">
-                                    <option value="0">求职信息</option>
-                                    <option value="1">招聘信息</option>
-                                    <option value="2">培训信息</option>
-                                    <option value="3">房屋信息</option>
-                                    <option value="4">求购信息</option>
-                                    <option value="5">求职信息</option>
-                                    <option value="6">家庭信息</option>
-                                    <option value="7">车辆信息</option>
-                                    <option value="8">出售信息</option>
-                                    <option value="9">招商信息</option>
-                                    <option value="10">寻物启示</option>
+                                <select name="searchInfo" id="search-info">
+                                    <option value="求职信息">求职信息</option>
+                                    <option value="招聘信息">招聘信息</option>
+                                    <option value="培训信息">培训信息</option>
+                                    <option value="房屋信息">房屋信息</option>
+                                    <option value="求购信息">求购信息</option>
+                                    <option value="求职信息">求职信息</option>
+                                    <option value="家庭信息">家庭信息</option>
+                                    <option value="车辆信息">车辆信息</option>
+                                    <option value="出售信息">出售信息</option>
+                                    <option value="招商信息">招商信息</option>
+                                    <option value="寻物启示">寻物启示</option>
                                 </select>
                             </div>
                         </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">搜索</button>
+                        </div>
                     </form>
-                    <div class="text-center">
-                        <button type="button" class="btn btn-primary">搜索</button>
-                    </div>
+
                 </div>
             </div>
             <div class="about">
