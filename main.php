@@ -9,7 +9,7 @@
                     try{
                         $pdo = new PDO($dsn,$user,$pass);
 
-                        $paidTotalNumSql = "select * from tb_info where type='公寓信息' and checkstate = 1 ";
+                        $paidTotalNumSql = "select * from tb_paidinfo where type='公寓信息' and checkstate = 1 and sdate<showdate ";
                         $paidTotalNum = $pdo->prepare($paidTotalNumSql);
                         $paidTotalNum->execute();
                                                 
@@ -29,10 +29,12 @@
                         // 当前页的起始位置
                         $paidStartNum = ($paidCurrentPage -1)*$paidPageSize;
 
-                        // 获取当前页的内容
-                        $paidSql = "select * from tb_info where type='公寓信息' and checkstate = 1 order by id limit $paidStartNum,$paidPageSize ";
+                        // 获取当前页的内容 判断类型 是否审核 是否到期
+                        $paidSql = "select * from tb_paidinfo where type='公寓信息' and checkstate = 1 and sdate<showdate order by id limit $paidStartNum,$paidPageSize ";
                         $paidResult = $pdo->prepare($paidSql);
                         $paidResult->execute();
+
+                        // $currentDate = date("Y-m-d",time());
 
                         while($res = $paidResult->fetch(PDO::FETCH_ASSOC)){
                             if($res['checkstate'] == 1 and $res['type'] == "公寓信息"){
@@ -41,7 +43,7 @@
                                     <div>
                                         <span class='content-type'>[<?php echo $res['type']; ?>]</span>
                                         <span class='content-title'><?php echo $res['title'] ?></span>
-                                        <span class='content-sdate'><?php echo $res['edate'] ?></span>
+                                        <span class='content-sdate'><?php echo $res['sdate'] ?></span>
                                     </div>
                                     <!-- echo mb_substr('这个真的很nice',0,3,'utf-8'); //这个真 -->
                                     <!-- echo mb_strlen('中文a字1符',‘UTF8‘); //6   -->
@@ -101,7 +103,8 @@
                 try{
                     $pdo = new PDO($dsn,$user,$pass);
 
-                    $pageSql = "select * from tb_freeinfo where type='公寓信息' and checkstate = 1 and sdate<showdate";
+                    $pageSql = "select * from tb_freeinfo where type='公寓信息' and checkstate = 1";
+
                     $page = $pdo->prepare($pageSql);
                     $page->execute();
     
@@ -120,20 +123,20 @@
                     $paidCurrentPage =  isset($_GET['paidpage'])?$_GET['paidpage']:1;
 
                     // 获取当前页的内容
-                    $sql = "select * from tb_freeinfo where type='公寓信息' and checkstate = 1 and sdate<showdate order by id limit $startPageNum,$pageSize ";
+                    $sql = "select * from tb_freeinfo where type='公寓信息' and checkstate = 1  limit $startPageNum,$pageSize ";
 
                     $result = $pdo->prepare($sql);
                     $result->execute();
 
                     while($res = $result->fetch(PDO::FETCH_ASSOC)){
-                        $currentDate = date("Y-m-d",time());
-                        if($res['checkstate'] == 1 and $currentDate < $res['showdate'] and $res['type'] == "公寓信息"){
+                        
+                        if($res['checkstate'] == 1 and $res['type'] == "公寓信息"){
                             ?>
                                 <div class='mb-2'>
                                     <div>
                                         <span class='content-type'>[<?php echo $res['type']; ?>]</span>
                                         <span class='content-title'><?php echo $res['title'] ?></span>
-                                        <span class='content-sdate'><?php echo $res['sdate'] ?></span>
+                                        <span class='content-sdate'><?php echo $res['edate'] ?></span>
                                     </div>
                                     <!-- echo mb_substr('这个真的很nice',0,3,'utf-8'); //这个真 -->
                                     <!-- echo mb_strlen('中文a字1符',‘UTF8‘); //6   -->

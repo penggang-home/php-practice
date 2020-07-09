@@ -47,10 +47,10 @@
                     <li><a href="qiugou.php">求购信息</a></li>
                     <li><a href="qiuzhi.php">求职信息</a></li>
                     <li><a href="jiating.php">家庭信息</a></li>
-                    <li><a href="">车辆信息</a></li>
-                    <li><a href="">出售信息</a></li>
-                    <li><a href="">招商信息</a></li>
-                    <li><a href="">寻物启示</a></li>
+                    <li><a href="cheliang.php">车辆信息</a></li>
+                    <li><a href="chushou.php">出售信息</a></li>
+                    <li><a href="zhaoshang.php">招商信息</a></li>
+                    <li><a href="xunwu.php">寻物启示</a></li>
                 </ul>
             </div>
         </nav>
@@ -131,7 +131,7 @@
                             </div>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-primary">搜索</button>
+                            <button class='button'></button>
                         </div>
                     </form>
 

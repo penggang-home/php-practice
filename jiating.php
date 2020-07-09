@@ -1,6 +1,7 @@
 <?php
     include("header.php");
 ?>
+
     <!-- 中间内容区域开始 -->
     <div class="main-right">
         <!-- 付费区开始 -->
@@ -12,11 +13,12 @@
                         try{
                             $pdo = new PDO($dsn,$user,$pass);
 
-                            $paidTotalNumSql = "select * from tb_info where type='家庭信息' and checkstate = 1 ";
+                            $paidTotalNumSql = "select * from tb_paidinfo where type='家庭信息' and checkstate = 1 and sdate<showdate ";
                             $paidTotalNum = $pdo->prepare($paidTotalNumSql);
                             $paidTotalNum->execute();
                                                     
 
+                            
                             // 付费信息显示条数
                             $paidPageSize = 2;
                             // 总记录数
@@ -31,10 +33,12 @@
                             // 当前页的起始位置
                             $paidStartNum = ($paidCurrentPage -1)*$paidPageSize;
 
-                            // 获取当前页的内容
-                            $paidSql = "select * from tb_info where type='家庭信息' and checkstate = 1 order by id limit $paidStartNum,$paidPageSize ";
+                            // 获取当前页的内容 判断类型 是否审核 是否到期
+                            $paidSql = "select * from tb_paidinfo where type='家庭信息' and checkstate = 1 and sdate<showdate order by id limit $paidStartNum,$paidPageSize ";
                             $paidResult = $pdo->prepare($paidSql);
                             $paidResult->execute();
+
+                            // $currentDate = date("Y-m-d",time());
 
                             while($res = $paidResult->fetch(PDO::FETCH_ASSOC)){
                                 if($res['checkstate'] == 1 and $res['type'] == "家庭信息"){
@@ -45,6 +49,9 @@
                                             <span class='content-title'><?php echo $res['title'] ?></span>
                                             <span class='content-sdate'><?php echo $res['edate'] ?></span>
                                         </div>
+                                        <!-- echo mb_substr('这个真的很nice',0,3,'utf-8'); //这个真 -->
+                                        <!-- echo mb_strlen('中文a字1符',‘UTF8‘); //6   -->
+                                        <!-- number_format（）函数。number_format（）函数用于将字符串转换为数字。它会在成功时返回格式化的数字，否则会在失败时给出E_WARNING。 -->
                                         <div class='content-content'><?php echo mb_substr($res['content'],0,92,'utf-8'); if(number_format(mb_strlen($res['content'])>92)){echo '...';} ?></div>
                                         <p class='mb-0 content-info'>联系人：<?php echo $res['linkman']?> 联系电话：<?php echo $res['tel']?> </p>
                                     </div>
@@ -100,7 +107,8 @@
                     try{
                         $pdo = new PDO($dsn,$user,$pass);
 
-                        $pageSql = "select * from tb_freeinfo where type='家庭信息' and checkstate = 1 and sdate<showdate ";
+                        $pageSql = "select * from tb_freeinfo where type='家庭信息' and checkstate = 1";
+
                         $page = $pdo->prepare($pageSql);
                         $page->execute();
         
@@ -119,14 +127,14 @@
                         $paidCurrentPage =  isset($_GET['paidpage'])?$_GET['paidpage']:1;
 
                         // 获取当前页的内容
-                        $sql = "select * from tb_freeinfo where type='家庭信息' and checkstate = 1 and sdate<showdate order by id limit $startPageNum,$pageSize ";
+                        $sql = "select * from tb_freeinfo where type='家庭信息' and checkstate = 1  limit $startPageNum,$pageSize ";
 
                         $result = $pdo->prepare($sql);
                         $result->execute();
 
                         while($res = $result->fetch(PDO::FETCH_ASSOC)){
-                            $currentDate = date("Y-m-d",time());
-                            if($res['checkstate'] == 1 and $currentDate < $res['showdate'] and $res['type'] == "家庭信息"){
+                            
+                            if($res['checkstate'] == 1 and $res['type'] == "家庭信息"){
                                 ?>
                                     <div class='mb-2'>
                                         <div>
@@ -179,6 +187,7 @@
         <!-- 免费区结束 -->
     </div>
     <!-- 中间内容区域结束 -->
+
 <?php
     include("footer.php");
 ?>
