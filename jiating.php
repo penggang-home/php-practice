@@ -47,7 +47,7 @@
                                         <div>
                                             <span class='content-type'>[<?php echo $res['type']; ?>]</span>
                                             <span class='content-title'><?php echo $res['title'] ?></span>
-                                            <span class='content-sdate'><?php echo $res['edate'] ?></span>
+                                            <span class='content-sdate'><?php echo $res['sdate'] ?></span>
                                         </div>
                                         <!-- echo mb_substr('这个真的很nice',0,3,'utf-8'); //这个真 -->
                                         <!-- echo mb_strlen('中文a字1符',‘UTF8‘); //6   -->
@@ -140,7 +140,7 @@
                                         <div>
                                             <span class='content-type'>[<?php echo $res['type']; ?>]</span>
                                             <span class='content-title'><?php echo $res['title'] ?></span>
-                                            <span class='content-sdate'><?php echo $res['sdate'] ?></span>
+                                            <span class='content-sdate'><?php echo $res['edate'] ?></span>
                                         </div>
                                         <!-- echo mb_substr('这个真的很nice',0,3,'utf-8'); //这个真 -->
                                         <!-- echo mb_strlen('中文a字1符',‘UTF8‘); //6   -->

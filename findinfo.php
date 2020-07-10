@@ -3,7 +3,7 @@
 ?>
 
     <!-- 中间内容区域开始 -->
-    <div class="main-right">
+    <div class="main-right col-sm-8">
         <article>
             <div class="paid-content">
                 <?php
@@ -19,7 +19,8 @@
                         try{
                             $pdo = new PDO($dsn,$user,$pass);
 
-                            $paidTotalNumSql = "select * from tb_paidinfo where concat(title,content,linkman,tel) like '%$searchContent%' and type='$searchType' and checkstate = 1 and sdate < showdate ";
+                            $paidTotalNumSql = "select * from tb_paidinfo where concat(type,title,content,linkman,tel,sdate) like '%$searchContent%' and type like '$searchType' and checkstate = 1 and sdate < showdate ";
+                            echo $paidTotalNumSql;
 
                             $paidTotalNum = $pdo->prepare($paidTotalNumSql);
                             $paidTotalNum->execute();
@@ -29,7 +30,7 @@
                             
                             if($paidTotalNum >= 1){                                        
                                 ?>
-                                    <p class="mani-title mb-1"><i class="iconfont icon-rect"></i> 付费信息</p>
+                                    <p class="mani-title mb-1" style='background-color:#F6F6F6;'><i class="iconfont pl-2 icon-zheng-triangle"></i> 付费信息</p>
                                 <?php
                                 // 付费信息显示条数
                                 $paidPageSize = 2;
@@ -44,7 +45,7 @@
                                 $paidStartNum = ($paidCurrentPage -1)*$paidPageSize;
     
                                 // 获取当前页的内容 判断类型 是否审核 是否到期
-                                $paidSql = "select * from tb_paidinfo where concat(title,content,linkman,tel) like '%$searchContent%' and type='$searchType' and checkstate = 1 and sdate < showdate order by id limit $paidStartNum,$paidPageSize ";
+                                $paidSql = "select type,title,left(content,152) as splitContent,linkman,tel,sdate from tb_paidinfo where concat(type,title,content,linkman,tel) like '%$searchContent%' and type like '$searchType' and checkstate = 1 and sdate < showdate order by id limit $paidStartNum,$paidPageSize ";
                                 $paidResult = $pdo->prepare($paidSql);
                                 $paidResult->execute();
     
@@ -54,15 +55,24 @@
                                         ?>
                                         <div class='mb-2'>
                                             <div>
-                                                <span>[<?php echo $res['type']; ?>]</span>
-                                                <span><?php echo $res['title'] ?></span>
-                                                <span><?php echo $res['edate'] ?></span>
+                                                <span>[<?php echo str_replace($searchContent,"<span style='font-weight:bold;color:red'>$searchContent</span>",$res['type']) ?>]</span>
+                                                <!-- <span> <?php echo str_replace($searchContent,"<span style='font-weight:bold;color:red'>$searchContent</span>",$res['type']) ?> </span> -->
+                                                <span><?php echo str_replace($searchContent,"<span style='font-weight:bold;color:red'>$searchContent</span>",$res['title']) ?></span>
+                                                <span><?php echo str_replace($searchContent,"<span style='font-weight:bold;color:red'>$searchContent</span>",$res['sdate']) ?></span>
                                             </div>
                                             <!-- echo mb_substr('这个真的很nice',0,3,'utf-8'); //这个真 -->
                                             <!-- echo mb_strlen('中文a字1符',‘UTF8‘); //6   -->
-                                            <!-- number_format（）用于将字符串转换为数字 -->
-                                            <div><?php echo mb_substr($res['content'],0,92,'utf-8'); if(number_format(mb_strlen($res['content'])>92)){echo '...';} ?></div>
-                                            <p>联系人：<?php echo $res['linkman']?> 联系电话：<?php echo $res['tel']?> </p>
+                                            <!-- number_format（）函数用于将字符串转换为数字。-->
+                                            <div style='text-indent:2em;'>
+                                                <?php 
+                                                    echo str_replace($searchContent,"<span style='font-weight:bold;color:red'>$searchContent</span>",$res['splitContent']);
+                                                    if(number_format(mb_strlen($res['content'])>=152)){echo '...';} 
+                                                ?>
+                                            </div>
+                                            <p>
+                                                联系人：<?php echo str_replace($searchContent,"<span style='font-weight:bold;color:red'>$searchContent</span>",$res['linkman']);?> 
+                                                联系电话：<?php echo str_replace($searchContent,"<span style='font-weight:bold;color:red'>$searchContent</span>",$res['tel']);?> 
+                                            </p>
                                         </div>
                                         <?php
                                 }
@@ -119,15 +129,23 @@
                         try{
                             $pdo = new PDO($dsn,$user,$pass);
 
-                            $pageSql = "select * from tb_freeinfo where concat(title,content,linkman,tel) like '%$searchContent%' and type='$searchType' and checkstate = 1";
+                            $pageSql = "select * from tb_freeinfo where concat(type,title,content,linkman,tel) like '%$searchContent%' and type like '$searchType' and checkstate = 1";
     
                             $page = $pdo->prepare($pageSql);
                             $page->execute();
             
                             // 总记录数
                             $totalNum = count($page->fetchAll(PDO::FETCH_ASSOC));
-                            if($totalNum >= 1 ){
 
+                            if($paidTotalNum == 0 && $totalNum == 0){
+                                ?>
+                                    <p class="mani-title mb-1" style='justify-content: center;align-items: center;height: 40vh;display: flex;font-weight:bold;'>对不起，没有您要查询的信息。</p>
+                                <?php
+                            }
+                            if($totalNum >= 1 ){
+                                ?>
+                                    <p class="mani-title mb-1 rounded-lg" style='background-color:#F6F6F6;'><i class="iconfont pl-2 icon-zheng-triangle"></i> <span>免费信息</span></p>
+                                <?php
                                 // 页面大小
                                 $pageSize = 3;
                                 // 总页数 ceil向上取整
@@ -141,27 +159,31 @@
                                 $paidCurrentPage =  isset($_GET['paidpage'])?$_GET['paidpage']:1;
         
                                 // 获取当前页的内容
-                                $sql = "select * from tb_freeinfo where concat(title,content,linkman,tel) like '%$searchContent%' and type='$searchType' and checkstate = 1  limit $startPageNum,$pageSize ";
-        
-                                $result = $pdo->prepare($sql);
+                                $sql = "select type,title,left(content,152) as splitContent,linkman,tel,edate from tb_freeinfo where concat(type,title,content,linkman,tel,edate) like '%$searchContent%' and type like '$searchType' and checkstate = 1  limit $startPageNum,$pageSize ";
+                                $result = $pdo->prepare($sql);  
                                 $result->execute();
-                                
-                                ?>
-                                    <p class="mani-title mb-1"><i class="iconfont icon-rect"></i> 免费专区</p>
-                                <?php
+
                                 while($res = $result->fetch(PDO::FETCH_ASSOC)){
                                     ?>
                                         <div class='mb-2'>
                                             <div>
-                                                <span>[<?php echo $res['type']; ?>]</span>
-                                                <span><?php echo str_replace($searchContent,"<span style='font:size:25px;color:red'>$searchContent<span>",$res['title']) ?></span>
-                                                <span><?php echo $res['sdate'] ?></span>
+                                                <span>[<?php echo str_replace($searchContent,"<span style='font-weight:bold;color:red'>$searchContent</span>",$res['type']) ?>]</span>
+                                                <span><?php echo str_replace($searchContent,"<span style='font-weight:bold;color:red'>$searchContent</span>",$res['title']) ?></span>
+                                                <span><?php echo str_replace($searchContent,"<span style='font-weight:bold;color:red'>$searchContent</span>",$res['edate']) ?></span>
                                             </div>
                                             <!-- echo mb_substr('这个真的很nice',0,3,'utf-8'); //这个真 -->
                                             <!-- echo mb_strlen('中文a字1符',‘UTF8‘); //6   -->
                                             <!-- number_format（）函数用于将字符串转换为数字。-->
-                                            <div><?php echo mb_substr($res['content'],0,92,'utf-8'); if(number_format(mb_strlen($res['content'])>92)){echo '...';} ?></div>
-                                            <p>联系人：<?php echo $res['linkman']?> 联系电话：<?php echo $res['tel']?> </p>
+                                            <div style='text-indent:2em;'>
+                                                <?php 
+                                                    echo str_replace($searchContent,"<span style='font-weight:bold;color:red'>$searchContent</span>",$res['splitContent']);
+                                                    if(number_format(mb_strlen($res['content'])>=152)){echo '...';} 
+                                                ?>
+                                            </div>
+                                            <p>
+                                                联系人：<?php echo str_replace($searchContent,"<span style='font-weight:bold;color:red'>$searchContent</span>",$res['linkman']);?> 
+                                                联系电话：<?php echo str_replace($searchContent,"<span style='font-weight:bold;color:red'>$searchContent</span>",$res['tel']);?> 
+                                            </p>
                                         </div>
                                     <?php
                                 }
@@ -185,7 +207,18 @@
                                 <a class="page-link" href="findinfo.php?freepage=<?php echo $currentPageNum-1 ?>&<?php echo 'paidpage='.$paidCurrentPage?>">上一页</a>
                             </li>
                             <?php
+                                $pageNumber = 5;
                                 for($i=1;$i<=$pageCountNum;$i++){
+                                    if($pageNumber - $_GET['freepage'] < 0 ){
+                                        ?>
+                                        <li class="page-item <?php if($i == $currentPageNum){echo 'active';}?>">
+                                            <a class="page-link" href="findinfo.php?freepage=<?php echo $i ?>&<?php echo 'paidpage='.$paidCurrentPage?>"> 
+                                               ...
+                                            </a>
+                                        </li>
+                                        <?php
+                                        break;
+                                    }
                                     ?>  
                                         <li class="page-item <?php if($i == $currentPageNum){echo 'active';}?>">
                                             <a class="page-link" href="findinfo.php?freepage=<?php echo $i ?>&<?php echo 'paidpage='.$paidCurrentPage?>"> 
@@ -203,7 +236,7 @@
                             </li>
                         </ul>
                     </nav>
-                    <?
+                    <?php
                 }
             ?>
         </article>

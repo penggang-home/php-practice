@@ -14,7 +14,7 @@
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1925165_m54txa8lr6.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1925165_psznom8aeuk.css">
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -66,7 +66,7 @@
 
     <main>
         <!-- 左侧边栏 -->
-        <aside>
+        <aside class='col-sm-4'>
             <div>
                 <p class="mani-title mb-0"><i class="iconfont icon-rect"></i> 推荐企业广告信息</p>
                 <ul>
@@ -130,6 +130,7 @@
                                     <option value="出售信息">出售信息</option>
                                     <option value="招商信息">招商信息</option>
                                     <option value="寻物启示">寻物启示</option>
+                                    <option value="%">查询所有</option>
                                 </select>
                             </div>
                         </div>
