@@ -20,7 +20,6 @@
                             $pdo = new PDO($dsn,$user,$pass);
 
                             $paidTotalNumSql = "select * from tb_paidinfo where concat(type,title,content,linkman,tel,sdate) like '%$searchContent%' and type like '$searchType' and checkstate = 1 and sdate < showdate ";
-                            echo $paidTotalNumSql;
 
                             $paidTotalNum = $pdo->prepare($paidTotalNumSql);
                             $paidTotalNum->execute();
@@ -96,15 +95,43 @@
                                 <a class="page-link" href="findinfo.php?paidpage=<?php echo $paidCurrentPage-1 ?>&<?php echo 'freepage='.$currentPageNum?>">上一页</a>
                             </li>
                             <?php
-                                for($i=1;$i<=$paidTotalPage;$i++){
-                                    ?>  
+                                $paidEnd = 5;
+                                $paidStart = 1;
+                                
+                                if($_GET['paidpage'] - 3 > 0){
+                                    if($paidTotalPage - $_GET['paidpage'] <= 2 ){
+                                        $paidStart = $paidTotalPage - 4;
+                                        $paidEnd = $paidTotalPage;
+                                    }else{
+                                        $paidStart = $_GET['paidpage'] - 2;
+                                        $paidEnd = $_GET['paidpage'] + 2;
+                                    }
+                                    
+                                }
+
+                                for($i=$paidStart;$i<=$paidTotalPage;$i++){
+                                    if($i <= $paidEnd){
+                                        ?>
                                         <li class="page-item <?php if($i == $paidCurrentPage){echo 'active';}?>">
                                             <a class="page-link" href="findinfo.php?paidpage=<?php echo $i ?>&<?php echo 'freepage='.$currentPageNum?>"> 
                                                 <?php echo $i ?>
                                             </a>
                                         </li>
-                                        
-                                    <?php
+                                        <?php
+                                    }else{
+                                        ?>  
+                                        <li class="page-item ">
+                                            <span class="page-link">...</span>
+                                        </li>
+                                        <li class="page-item <?php if($i == $currentPageNum){echo 'active';}?>">
+                                            <a class="page-link" href="findinfo.php?freepage=<?php echo $currentPageNum ?>&<?php echo 'paidpage='.$paidCurrentPage?>"> 
+                                                <?php echo $paidTotalPage?>
+                                            </a>
+                                        </li>
+                                        <?php
+                                        break;
+                                    }
+
                                 }
                             ?>
                             <li class="page-item <?php if($paidCurrentPage == $paidTotalPage){echo 'disabled';}?>">
@@ -208,24 +235,62 @@
                             </li>
                             <?php
                                 $pageNumber = 5;
-                                for($i=1;$i<=$pageCountNum;$i++){
-                                    if($pageNumber - $_GET['freepage'] < 0 ){
-                                        ?>
-                                        <li class="page-item <?php if($i == $currentPageNum){echo 'active';}?>">
-                                            <a class="page-link" href="findinfo.php?freepage=<?php echo $i ?>&<?php echo 'paidpage='.$paidCurrentPage?>"> 
-                                               ...
-                                            </a>
-                                        </li>
-                                        <?php
-                                        break;
+                                $start = 1;
+
+                                // 控制页码抬头只输出一次
+                                $startState =  true;
+
+                                // 当是大于等于第四页时
+                                if($_GET['freepage']-3>0){
+                                    // 判断是否到最后五页
+                                    if($pageCountNum - $_GET['freepage'] <= 2){
+                                        // 开始到倒数第五项
+                                        $start = $pageCountNum - 4;
+                                        // 
+                                        $pageNumber = $totalNum;
+                                    }else{
+                                        // 只显示当前页的前两页和后两页
+                                        $start = $_GET['freepage'] -2;
+                                        $pageNumber = $_GET['freepage'] + 2;
                                     }
-                                    ?>  
+                                }
+
+                                for($i=$start;$i<=$pageCountNum;$i++){
+                                    // 判断是否是开头前$pageNumber页
+                                    if($i<=$pageNumber){
+                                        if($_GET['freepage'] > 3 and $startState){
+                                            $startState = false;
+                                            ?>  
+                                            <li class="page-item">
+                                                <a class="page-link" href="findinfo.php?freepage=<?php echo 1 ?>&<?php echo 'paidpage='.$paidCurrentPage?>"> 
+                                                    <?php echo 1?>
+                                                </a>
+                                            </li>
+                                            <li class="page-item">
+                                                <span class='page-link'>...</span>
+                                            </li>
+                                            <?php
+                                        }
+                                        ?>  
                                         <li class="page-item <?php if($i == $currentPageNum){echo 'active';}?>">
                                             <a class="page-link" href="findinfo.php?freepage=<?php echo $i ?>&<?php echo 'paidpage='.$paidCurrentPage?>"> 
                                                 <?php echo $i?>
                                             </a>
                                         </li>
-                                    <?php
+                                        <?php
+                                    }else{
+                                        ?>  
+                                        <li class="page-item">
+                                            <span class='page-link'>...</span>
+                                        </li>
+                                        <li class="page-item <?php if($i == $currentPageNum){echo 'active';}?>">
+                                            <a class="page-link" href="findinfo.php?freepage=<?php echo $pageCountNum ?>&<?php echo 'paidpage='.$paidCurrentPage?>"> 
+                                                <?php echo $pageCountNum?>
+                                            </a>
+                                        </li>
+                                        <?php
+                                        break;
+                                    }
                                 }
                             ?>
                             <li class="page-item <?php if($currentPageNum == $pageCountNum){echo 'disabled';}?>">

@@ -319,4 +319,8 @@ body
 body > div > main > div > article.pt-2 > div > p > span{
     color: #61AA00;
 }
+
+.pagination .page-item .page-link{
+    padding: 4px 10px;
+}
 /* 搜索页结束 */
