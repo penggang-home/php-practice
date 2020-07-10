@@ -301,6 +301,6 @@ footer {
 #search-info{
     width: 100%;
 }
-body > div > main > aside > div:nth-child(3) > div > form > div:nth-child(3),body > div > main > aside > div:nth-child(3) > div > form > div:nth-child(3) > button{
+/* body > div > main > aside > div:nth-child(3) > div > form > div:nth-child(3),body > div > main > aside > div:nth-child(3) > div > form > div:nth-child(3) > button{
     width: 100%;
-}
+} */

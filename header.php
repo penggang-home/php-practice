@@ -1,3 +1,7 @@
+<?php
+    // 开启本地存储
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +47,7 @@
                     <li><a href="index.php">首页</a></li>
                     <li><a href="zhaopin.php">招聘信息</a></li>
                     <li><a href="peixun.php">培训信息</a></li>
-                    <li><a href="index.php">房屋信息</a></li>
+                    <li><a href="index.php">公寓信息</a></li>
                     <li><a href="qiugou.php">求购信息</a></li>
                     <li><a href="qiuzhi.php">求职信息</a></li>
                     <li><a href="jiating.php">家庭信息</a></li>
@@ -101,7 +105,7 @@
             <div>
                 <p class="mani-title"><i class="iconfont icon-rect"></i> 信息快速检索</p>
                 <div class="search">
-                    <form action='search.php' method='POST' class="form-row">
+                    <form action='findinfo.php' method='POST' class="form-row">
                         <div class="form-group mb-1 w-100">
                             <div class="input-group ">
                                 <div class="input-group-prepend">
@@ -115,11 +119,10 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">选择条件</span>
                                 </div>
-                                <select name="searchInfo" id="search-info">
-                                    <option value="求职信息">求职信息</option>
+                                <select name="searchType" id="search-info">
                                     <option value="招聘信息">招聘信息</option>
                                     <option value="培训信息">培训信息</option>
-                                    <option value="房屋信息">房屋信息</option>
+                                    <option value="公寓信息">公寓信息</option>
                                     <option value="求购信息">求购信息</option>
                                     <option value="求职信息">求职信息</option>
                                     <option value="家庭信息">家庭信息</option>
@@ -131,7 +134,7 @@
                             </div>
                         </div>
                         <div>
-                            <button class='button'></button>
+                            <button name='submit' type='submit' class='btn btn-primary'>搜索</button>
                         </div>
                     </form>
 
