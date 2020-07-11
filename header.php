@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_1925165_psznom8aeuk.css">
 
     <link rel="stylesheet" href="css/style.css">
+    <script src='js/reset.js'></script>
 </head>
 
 <body>
@@ -71,7 +72,7 @@
                 <p class="mani-title mb-0"><i class="iconfont icon-rect"></i> 推荐企业广告信息</p>
                 <ul>
 
-                <?php
+                    <?php
                         $dbms = 'mysql';
                         $host = 'localhost';
                         $dbName='tb_cityinfo';
@@ -82,7 +83,7 @@
 
                         try{
                             $pdo = new PDO($dsn,$user,$pass);
-                            $sql = 'select * from tb_advertsing';
+                            $sql = 'select * from tb_advertsing where flag = 1 limit 0,10';
                             $result = $pdo->prepare($sql);
                             $result->execute();
 
@@ -90,7 +91,7 @@
                                 if($res['flag'] == 1){
                                     ?>
                                         <li>
-                                            <a href="#"> <i class="iconfont icon-dian"></i> <?php echo $res['title'] ?></a>
+                                            <a onclick="openNewWindow('showgg.php?id=<?php echo $res['id']; ?>')"> <i class="iconfont icon-dian"></i> <?php echo $res['title'] ?></a>
                                         </li>
                                     <?php   
                                 }
@@ -105,7 +106,9 @@
             <div>
                 <p class="mani-title"><i class="iconfont icon-rect"></i> 信息快速检索</p>
                 <div class="search">
-                    <form action='findinfo.php' method='POST' class="form-row">
+                    <!-- autocomplete 是否开启历史记录 -->
+                    <!-- <form action='findinfo.php' method='POST' class="form-row" autocomplete='on'> -->
+                    <form action='findinfo.php' method='POST' class="form-row" autocomplete='off'>
                         <div class="form-group mb-1 w-100">
                             <div class="input-group ">
                                 <div class="input-group-prepend">

@@ -87,7 +87,7 @@
                 if($paidTotalNum >2){
                     ?>
                     <nav class='page' aria-label="...">
-                        <ul class="pagination">
+                        <ul class="pagination mb-0">
                             <li class="page-item <?php if($paidCurrentPage == 1){echo 'disabled';}?>">
                                 <a class="page-link" href="findinfo.php?paidpage=1&<?php echo 'freepage='.$currentPageNum?>">首页</a>
                             </li>
@@ -119,16 +119,18 @@
                                         </li>
                                         <?php
                                     }else{
-                                        ?>  
-                                        <li class="page-item ">
-                                            <span class="page-link">...</span>
-                                        </li>
-                                        <li class="page-item <?php if($i == $currentPageNum){echo 'active';}?>">
-                                            <a class="page-link" href="findinfo.php?freepage=<?php echo $currentPageNum ?>&<?php echo 'paidpage='.$paidCurrentPage?>"> 
-                                                <?php echo $paidTotalPage?>
-                                            </a>
-                                        </li>
-                                        <?php
+                                        if($paidTotalPage - $_GET['paidpage'] > 2){
+                                            ?>  
+                                            <li class="page-item ">
+                                                <span class="page-link">...</span>
+                                            </li>
+                                            <li class="page-item <?php if($i == $currentPageNum){echo 'active';}?>">
+                                                <a class="page-link" href="findinfo.php?freepage=<?php echo $currentPageNum ?>&<?php echo 'paidpage='.$paidTotalPage?>"> 
+                                                    <?php echo $paidTotalPage?>
+                                                </a>
+                                            </li>
+                                            <?php
+                                        }
                                         break;
                                     }
 
@@ -226,7 +228,7 @@
                 if($totalNum >3){
                     ?>
                     <nav class='page' aria-label="...">
-                        <ul class="pagination">
+                        <ul class="pagination mb-1">
                             <li class="page-item <?php if($currentPageNum == 1){echo 'disabled';}?>">
                                 <a class="page-link" href="findinfo.php?freepage=1&<?php echo 'paidpage='.$paidCurrentPage?>">首页</a>
                             </li>
@@ -236,9 +238,6 @@
                             <?php
                                 $pageNumber = 5;
                                 $start = 1;
-
-                                // 控制页码抬头只输出一次
-                                $startState =  true;
 
                                 // 当是大于等于第四页时
                                 if($_GET['freepage']-3>0){
@@ -258,19 +257,6 @@
                                 for($i=$start;$i<=$pageCountNum;$i++){
                                     // 判断是否是开头前$pageNumber页
                                     if($i<=$pageNumber){
-                                        if($_GET['freepage'] > 3 and $startState){
-                                            $startState = false;
-                                            ?>  
-                                            <li class="page-item">
-                                                <a class="page-link" href="findinfo.php?freepage=<?php echo 1 ?>&<?php echo 'paidpage='.$paidCurrentPage?>"> 
-                                                    <?php echo 1?>
-                                                </a>
-                                            </li>
-                                            <li class="page-item">
-                                                <span class='page-link'>...</span>
-                                            </li>
-                                            <?php
-                                        }
                                         ?>  
                                         <li class="page-item <?php if($i == $currentPageNum){echo 'active';}?>">
                                             <a class="page-link" href="findinfo.php?freepage=<?php echo $i ?>&<?php echo 'paidpage='.$paidCurrentPage?>"> 

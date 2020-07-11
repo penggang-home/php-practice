@@ -135,10 +135,11 @@ main aside div ul li a {
   text-decoration: none;
   white-space: nowrap;
   color: #5096c1;
+  cursor: pointer;
 }
 
 main aside div ul li a:hover {
-  color: #1ABC9C;
+  color: #1abc9c;
   font-weight: bold;
 }
 body > div > main > div {
@@ -313,14 +314,83 @@ body
   > button {
   width: 100%;
 }
-.mani-title .icon-zheng-triangle{
-    color: #61AA00;
+.mani-title .icon-zheng-triangle {
+  color: #61aa00;
 }
-body > div > main > div > article.pt-2 > div > p > span{
-    color: #61AA00;
+body > div > main > div > article.pt-2 > div > p > span {
+  color: #61aa00;
 }
-
-.pagination .page-item .page-link{
-    padding: 4px 10px;
+.page-item {
+  height: fit-content;
+}
+.pagination .page-item .page-link {
+  padding: 4px 10px;
 }
 /* 搜索页结束 */
+
+/* showgg page start */
+.showgg-body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+.showgg-body > .container {
+  padding: 50px;
+  border: 1px solid teal;
+  box-shadow: 0px 0px 10px 3px teal;
+}
+.showgg-body .all{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+}
+.showgg-body .all .ad-info{
+  display: flex;
+  flex-direction: row;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+.showgg-body .all .ad-info-left{
+  border-right: 2px solid rgba(0, 0, 0, 0.5);
+}
+.showgg-body .all .ad-info-left,.showgg-body .all .ad-info-right{
+  flex: 1 1 50%;
+  display: flex ;
+}
+.showgg-body .all .ad-info-left div:nth-of-type(1),.showgg-body .all .ad-info-right div:nth-of-type(1){
+  padding: 10px 0 10px 10px;
+  border-right: 2px solid rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.showgg-body .all .ad-info-left div:nth-of-type(2),.showgg-body .all .ad-info-right div:nth-of-type(2){
+  padding: 10px 10px 10px 5px;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.showgg-body .all .ad-content{
+  display: flex;
+}
+.showgg-body .all .ad-content> div:nth-of-type(1){
+  padding: 10px 0px 10px 10px;
+  width: fit-content;
+  white-space: nowrap;
+  border-right: 2px solid rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.showgg-body .all .ad-content> div:nth-of-type(2){
+  text-align: left;
+  padding: 5px;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* showgg page end */

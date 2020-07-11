@@ -46,7 +46,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">信息内容</span>
                                 </div>
-                                <textarea name="releaseTextarea"cols="100" rows="10" required ></textarea>
+                                <textarea name="releaseTextarea"cols="70" rows="5" required ></textarea>
                             </div>
                         </div>
 
