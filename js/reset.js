@@ -15,7 +15,7 @@ function openNewWindow(url, name, customWidth, customHeight) {
   if (!customHeight) {
     customHeight = window.screen.height / 2;
   }
-  
+
   //window.screen.height获得屏幕的高，window.screen.width获得屏幕的宽
   var iTop = (window.screen.height - 30 - customHeight) / 2; //获得窗口的垂直位置;
   var iLeft = (window.screen.width - 10 - customWidth) / 2; //获得窗口的水平位置;

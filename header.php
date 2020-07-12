@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
+    <!-- 阿里图标库 -->
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_1925165_psznom8aeuk.css">
 
     <link rel="stylesheet" href="css/style.css">
@@ -31,7 +31,7 @@
             <ul class="mb-1">
                 <div class="left">
                     <li><a href="release.php">[发布信息]</a> </li>
-                    <li><a href="#">[进入后台]</a> </li>
+                    <li><a href="admin/login.php">[进入后台]</a> </li>
                 </div>
                 <div class="right">
                     <li><a href="#">加入收藏</a> </li>

@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header {
+    position: relative;
+}
+.header .img {
+    width: 100%;
+}
+.header .img img{
+    width: 100%;
+    height: auto;
+}
+.header .title{
+    position: absolute;
+    font-size: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-left: 50px;
+    color: #eeeeee;
+}
+.header .title span{
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header .menu{
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+
+/* 中间左边开始 */
+main{
+    display: flex;
+}
+main .left{
+    width: 30%;
+    flex: 1 1 auto;
+}
+main .right{
+    width: 70%;
+    flex: 1 1 auto;
+}
+main .left .top{
+    /* background:linear-gradient(#eee,#5C93E3,#eee); */
+    background:linear-gradient(#eee,#5C93E3,#eee);
+    padding-left: 15px;
+    font-weight: bold;
+    font-size: 20px;
+}
+main>.left>div>.icon-dengpao{
+    color: yellow;
+    font-size: 24px;
+}
+/* 中间左边结束 */
