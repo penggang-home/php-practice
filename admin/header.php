@@ -22,9 +22,8 @@
     <script src="../js/bootstrap.min.js"></script>
 
     <!-- 阿里图标库 -->
-    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1925165_kt5qll2386j.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1925165_xn2bhv6np7.css">
     <link rel="stylesheet" href="css/admin.css">
-
 </head>
 <body>
     <div class="container">
@@ -37,9 +36,11 @@
                 后台管理系统
             </div>
             <div class="menu">
-                <button class="btn btn-primary">网站首页</button>
-                <button class="btn btn-primary">退出登录</button>
-            </div>
+                <form action="signout.php" method='POST'>
+                    <a href="../index.php"><input type='button' class="btn btn-primary" value='网站首页'></a>
+                    <input type='submit' class="btn btn-danger" name='signout' value='退出登录'>
+                </form>
+        </div>
         </header>
 
 

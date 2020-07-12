@@ -1,14 +1,3 @@
-<?php
-    session_start();
-    if($_SESSION['loginState'] == 'true'){
-        ?>
-        <script>
-            window.location.href='index.php';
-        </script>
-        <?php
-        exit;
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,16 +15,16 @@
             <img src="images/info.svg" alt="">
         </div>
         <div class="login-box">
-            <form action="chkadmin.php" method="POST" autocomplete='off'>
+            <form action="register_ok.php" method="POST" autocomplete='off'>
                 <img src="images/avatar.svg" alt="" class="avatar">
-                <h2>Welcome</h2>
+                <h2>Welcome Sign Up</h2>
                 <div class="input-group">
                     <div class="icon">
                         <i class="fa fa-user"></i>
                     </div>
                     <div>
-                        <h5>Username</h5>
-                        <input type="text" name="username" class="input" maxlength="22" required >
+                        <h5>Username <span>用户名已存在</span></h5>
+                        <input type="text" name="username" class="input" minlength='6' maxlength="22" required >
                     </div>
                 </div>
                 <div class="input-group">
@@ -44,14 +33,13 @@
                     </div>
                     <div>
                         <h5>Password</h5>
-                        <input type="password" name="password" class="input" maxlength="16" required>
+                        <input type="text" name="password" class="input" minlength='8' maxlength="16" required>
                     </div>
                 </div>
                 <div class="menu">
-                    <a href="register.php">Register</a>
-                    <a href="#">Forgot Password?</a>
+                    <a href="login.php">Go Sign In</a>
                 </div>
-                <input type="submit" class="btn" value="Log in">
+                <input type="submit" class="btn" value="Sign Up">
                 <a href="../index.php"><input type="button" class="btn" value="Back Index"></a>
             </form>
         </div>

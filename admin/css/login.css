@@ -171,7 +171,7 @@ a:hover {
     background-image: linear-gradient(to right, #00B0FF, #0c8cc7, #00B0FF);
     cursor: pointer;
     color: #fff;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-family: 'Roboto', sans-serif;
     background-size: 200%;
     transition: .5s;
