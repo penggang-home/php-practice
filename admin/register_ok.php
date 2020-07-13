@@ -16,8 +16,10 @@
 
         try {
             $pdo = new PDO($dsn,$user,$pass);
-            $sql = "select * from tb_admin where name=$username";
+            $sql = "select * from tb_admin where name='$username' ";
             
+            // echo $sql;
+            // exit;
             $result = $pdo->prepare($sql);
             $result->execute();
 
