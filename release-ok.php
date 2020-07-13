@@ -7,8 +7,7 @@
         $tel = $_POST['releaseTel'];
         // 年份减一
         // $sdate =  date('Y-m-d h:i:s',strtotime("-1 year")); 
-        $sdate =  date('Y-m-d h:i:s',time()); 
-        $showdate = date('Y-m-d',strtotime("+1 month"));
+        $edate =  date('Y-m-d h:i:s',time()); 
 
         $dbms = 'mysql';
         $host = 'localhost';
@@ -19,7 +18,7 @@
         $dsn = "$dbms:dbname=$dbName;host=$host";
 
         $pdo = new PDO($dsn,$user,$pass);
-        $query ="insert into tb_freeinfo(type,title,content,linkman,tel,sdate,showdate)values('$type','$title','$content','$linkman','$tel','$sdate','$showdate')";
+        $query ="insert into tb_freeinfo(type,title,content,linkman,tel,edate)values('$type','$title','$content','$linkman','$tel','$edate')";
         $result=$pdo->prepare($query);
         $result->execute();
 

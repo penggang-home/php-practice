@@ -23,7 +23,7 @@
                         <i class="fa fa-user"></i>
                     </div>
                     <div>
-                        <h5>Username <span>用户名已存在</span></h5>
+                        <h5>Username</h5>
                         <input type="text" name="username" class="input" minlength='6' maxlength="22" required >
                     </div>
                 </div>
