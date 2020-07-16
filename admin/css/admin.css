@@ -39,6 +39,9 @@
 }
 
 /* 中间左边开始 */
+body > div > main > div.left > div.show-info div.show-center > span::before{
+    color: red;
+}
 main {
     display: flex;
     margin-top: 4px;
@@ -101,7 +104,7 @@ main .left .show-info .show-center span {
     transform: translateX(-50%);
 }
 
-main .left .show-info .show-center form {
+main .left .show-info .show-center  {
     min-height: 50px;
     padding: 20px;
     display: flex;
@@ -185,17 +188,82 @@ main div.right div.content header{
     width: 100%;
     text-align: left;
 }
+/* 表格第一行不换行 */
+body > div > main > div.right > div.content > table > thead > tr{
+    white-space: nowrap;
+}
 
-/* center right end */
 
-/* footer start */
+/* 私有属性实现多行省略 */
+/* body > div > main > div.right > div.content > table > tbody > tr:nth-child(1) > th:nth-child(2){
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;   
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+} */
+
+table tr,table th,table td{
+    border: 0;
+    max-width: 200px;
+    width: fit-content;
+}
+.table td, .table th{
+    vertical-align: middle;
+}
+table tr{
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+body > div > main > div.right > div.content > table > tbody > tr > th:nth-child(2){
+    display: inline-block;
+    max-height: 55px;
+    /* margin: 5px; */
+    overflow: hidden;
+    padding: 5px 0px;
+    position: relative;
+    padding-right: 1em;
+    margin-bottom: 5px;
+    /* 文本两端对齐 */
+    text-align: justify;
+}
+/* 添加省略号并定位到最后 */
+body > div > main > div.right > div.content > table > tbody > tr > th:nth-child(2)::before{
+    content: "...";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+/* 添加尾部的白块 */
+body > div > main > div.right > div.content > table > tbody > tr > th:nth-child(2)::after{
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    margin-top: 0.5em;
+}
+/* 设置奇数行的的after的背景 */
+body > div > main > div.right > div.content > table > tbody > tr:nth-child(odd) > th:nth-child(2)::after{
+    background-color: #F2F2F2;
+}
+/* 偶数行的背景 */
+body > div > main > div.right > div.content > table > tbody > tr:nth-child(even) > th:nth-child(2)::after{
+    background-color:white;
+}
+
+/*************************************************center right end****************************************************/
+
+/*************************************************footer start********************************************************/
 body>div.container>footer {
     text-align: center;
     padding: 15px;
     background-color: #689FEE;
 }
 
-/* footer end */
+/*************************************************footer end **********************************************************/
 
 
 @media (min-width: 1500px){
