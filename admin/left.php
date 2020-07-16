@@ -16,7 +16,7 @@
                         <input type="radio" name="freeState">已审核
                     </label>
                     <label>
-                        <input type="radio" name="freeState" >未审核
+                        <input type="radio" name="freeState">未审核
                     </label>
                     <label>
                         <input type="radio" name="freeState" checked>全部
@@ -55,7 +55,7 @@
                         <input type="radio" name="freeState">已付费
                     </label>
                     <label>
-                        <input type="radio" name="freeState" >未付费
+                        <input type="radio" name="freeState">未付费
                     </label>
                     <label>
                         <input type="radio" name="freeState" checked>全部
@@ -93,7 +93,7 @@
                         <input type="radio" name="freeState">已推荐
                     </label>
                     <label>
-                        <input type="radio" name="freeState" >未推荐
+                        <input type="radio" name="freeState">未推荐
                     </label>
                     <label>
                         <input type="radio" name="freeState" checked>全部
@@ -104,8 +104,15 @@
                 <button class="btn btn-info">检索</button>
             </div>
         </div>
+        <div class="release-info">
+            <div>
+                <i class="fa fa-dollar"></i>
+                发布付费信息
+            </div>
+            <div>
+                <i class="fa fa-info-circle" ></i>
+                发布企业广告
+            </div>
+        </div>
     </div>
-    <div class="right">
-        right
-    </div>
-</main>
+

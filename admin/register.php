@@ -45,5 +45,11 @@
         </div>
     </div>
     <script src="js/admin.js" type="text/javascript"></script>
+    <script src="js/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:"#app"
+        })
+    </script>
 </body>
 </html>

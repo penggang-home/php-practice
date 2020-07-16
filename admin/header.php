@@ -17,12 +17,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>系统后台</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <script src="../js/jquery-3.4.1.js"></script>
     <script src="../js/bootstrap.min.js"></script>
 
     <!-- 阿里图标库 -->
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_1925165_xn2bhv6np7.css">
+    <!-- Font-Awesome 字体图标库 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
