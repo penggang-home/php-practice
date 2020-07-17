@@ -218,7 +218,7 @@ table tr{
 
 body > div > main > div.right > div.content > table > tbody > tr > th:nth-child(2){
     display: inline-block;
-    max-height: 55px;
+    max-height: 50px;
     /* margin: 5px; */
     overflow: hidden;
     padding: 5px 0px;

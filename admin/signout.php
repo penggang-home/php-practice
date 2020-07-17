@@ -2,7 +2,7 @@
     session_start();
     if($_POST['signout'] == '退出登录'){
         $_SESSION['loginState'] = 'false';
-        // echo $_SESSION['loginState'];
+        $_SESSION['submitState'] = false; 
         ?>
         <script>
             alert("退出成功");

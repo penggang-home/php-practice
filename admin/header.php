@@ -1,5 +1,16 @@
 <?php
     session_start();
+    // 判断是否登录
+
+    // PDO
+    $dbms = 'mysql';
+    $host = 'localhost';
+    $dbName='tb_cityinfo';
+    $user='root';
+    $pass='123456';
+
+    $dsn="$dbms:dbname=$dbName;host=$host";
+
     if($_SESSION['loginState'] != 'true'){
         ?>
 		<script>
@@ -9,7 +20,49 @@
 		<?php
 		exit;
     }
-    
+
+    if($_GET['enable'] != '' || $_GET['disable'] != '' ){
+        $updateTableName = $_GET['tableName'];
+        $updatePDO = new PDO($dsn, $user, $pass);
+
+        // 审核通过
+        if($_GET['enable'] != ''){
+            $id = $_GET['enable'];
+            $checkstate = 1;
+        }
+        // 取消审核
+        if($_GET['disable'] != ''){
+            $id = $_GET['disable'];
+            $checkstate = 0;
+        }
+
+        try {
+            $updateSql = "update $updateTableName set checkstate=$checkstate where id=$id";
+
+            // exec 执行后返回受影响的行数
+            $updateResult = $updatePDO->exec($updateSql);
+            if($updateResult > 0){
+                if($_GET['enable'] != ''){
+                    ?>
+                    <script>
+                        alert("该信息已审核通过!");
+                    </script>
+                    <?    
+                }else{
+                    ?>
+                    <script>
+                        alert("该信息已取消审核!");
+                    </script>
+                    <?
+                }
+            }
+
+        } catch (Exception $e) {
+            die("Error:".$e->getMessage()."<br>");
+        }
+
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
