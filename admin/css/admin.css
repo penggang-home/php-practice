@@ -3,7 +3,13 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+.disabled:hover{
+    cursor: url("../images/disabled.ico"),auto;
+}
+.page-item>.page-link,label{
+    user-select: none;
+}
+/**************************************************** header start ***************************************************/
 .header {
     position: relative;
 }
@@ -37,8 +43,9 @@
     right: 5px;
     bottom: 5px;
 }
+/**************************************************** header end ***************************************************/
 
-/* 中间左边开始 */
+/*************************************************** 中间左边开始 ***************************************************/
 body > div > main > div.left > div.show-info div.show-center > span::before{
     color: red;
 }
@@ -150,7 +157,28 @@ div>main div.left div.release-info> :first-child {
 
 /* 中间左边结束 */
 
-/* center right start */
+/*********************************************************************** center right start********************************************************/
+#no-content{
+    margin: 0;
+    padding: 0;
+    font-size: 38px;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    color: #34495e;
+}
+/* 标题不允许换行 */
+body > div > main > div.right > div.content > table > tbody > tr > th:nth-child(1){
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* 从第四个起 不允许换行 */
+body > div > main > div.right > div.content > table > tbody > tr > th:nth-child(n+3){
+    white-space: nowrap;
+}
 main div.right {
     display: flex;
     flex-direction: column;
@@ -210,6 +238,7 @@ table tr,table th,table td{
 }
 .table td, .table th{
     vertical-align: middle;
+    padding: 0.5rem;
 }
 table tr{
     border-top: 1px solid #ccc;

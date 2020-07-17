@@ -18,3 +18,16 @@ inputs.forEach(input=>{
     username.focus();
 });
 
+function deleteInfo(title,url,state){
+    if(state == 1){
+        state = "已审核";
+    }else{
+        state = "未审核";
+    }
+    let checkState = confirm(`您确定要删除该文章吗？\n${title}————${state}`);
+    if(checkState == true){
+        // console.log(url);
+        window.location.href = url;
+    }
+}
+

@@ -123,6 +123,7 @@
                                     <span class="input-group-text">选择条件</span>
                                 </div>
                                 <select name="searchType" id="search-info">
+                                    <option value="%">查询所有</option>
                                     <option value="招聘信息">招聘信息</option>
                                     <option value="培训信息">培训信息</option>
                                     <option value="公寓信息">公寓信息</option>
@@ -133,7 +134,6 @@
                                     <option value="出售信息">出售信息</option>
                                     <option value="招商信息">招商信息</option>
                                     <option value="寻物启示">寻物启示</option>
-                                    <option value="%">查询所有</option>
                                 </select>
                             </div>
                         </div>

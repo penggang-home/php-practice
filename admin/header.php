@@ -1,16 +1,6 @@
 <?php
     session_start();
     // 判断是否登录
-
-    // PDO
-    $dbms = 'mysql';
-    $host = 'localhost';
-    $dbName='tb_cityinfo';
-    $user='root';
-    $pass='123456';
-
-    $dsn="$dbms:dbname=$dbName;host=$host";
-
     if($_SESSION['loginState'] != 'true'){
         ?>
 		<script>
@@ -21,40 +11,84 @@
 		exit;
     }
 
-    if($_GET['enable'] != '' || $_GET['disable'] != '' ){
-        $updateTableName = $_GET['tableName'];
+   // PDO
+    $dbms = 'mysql';
+    $host = 'localhost';
+    $dbName='tb_cityinfo';
+    $user='root';
+    $pass='123456';
+
+    $dsn="$dbms:dbname=$dbName;host=$host";
+
+    // 判断是否检索
+    if($_POST['submit'] == "检索"){
+        $_SESSION['submitState'] = true; 
+        // 查询的表名
+        $_SESSION['tableName'] = $_POST['tableName'];
+        // 审核状态 检查状态
+        $_SESSION['checkState'] = $_POST['checkState'];
+        // 搜索的类型
+        $_SESSION['searchType'] = $_POST['searchType'];
+    }
+
+    // 审核 取消审核 删除
+    if($_GET['enable'] != '' || $_GET['disable'] != '' || $_GET['delete'] != ''){
+        $tableName = $_GET['tableName'];
         $updatePDO = new PDO($dsn, $user, $pass);
 
         // 审核通过
         if($_GET['enable'] != ''){
             $id = $_GET['enable'];
             $checkstate = 1;
+            $updateSdate = true;
         }
         // 取消审核
         if($_GET['disable'] != ''){
             $id = $_GET['disable'];
             $checkstate = 0;
+            $updateSdate = true;
+        }
+        //删除
+        if($_GET['delete'] != ''){
+            $id = $_GET['delete'];
         }
 
         try {
-            $updateSql = "update $updateTableName set checkstate=$checkstate where id=$id";
+
+            if($updateSdate){
+                if($tableName == "tb_advertsing"){
+                    $Sql = "update $tableName set flag=$checkstate where id=$id";
+                }else{
+                    $Sql = "update $tableName set checkstate=$checkstate where id=$id";
+                }
+            }else{
+                $Sql = "delete from $tableName where id = $id";
+            }
 
             // exec 执行后返回受影响的行数
-            $updateResult = $updatePDO->exec($updateSql);
-            if($updateResult > 0){
+            $updateResult = $updatePDO->exec($Sql);
+
+            if($updateResult > 0 and $updateSdate){
                 if($_GET['enable'] != ''){
                     ?>
                     <script>
-                        alert("该信息已审核通过!");
+                        // alert("该信息已审核通过!");
                     </script>
                     <?    
                 }else{
                     ?>
                     <script>
-                        alert("该信息已取消审核!");
+                        // alert("该信息已取消审核!");
                     </script>
                     <?
                 }
+            }else if($updateResult > 0){
+                ?>
+                <script>
+                    // alert("删除成功!");
+                    window.location.href='index.php';
+                </script>
+                <?
             }
 
         } catch (Exception $e) {
